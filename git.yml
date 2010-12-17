@@ -229,3 +229,93 @@ git: |-
   
   GIT_AUTHOR_EMAIL, GIT_COMMITTER_EMAIL 
     Your email address to be recorded in any newly created commits.  Overrides user.email in .git/config
+  
+  git config --global user.name bgrenier
+  git config --global user.email "bgrenier@maatg.com"
+  
+  $ cd my_other_repo
+  $ git config user.name "gwarf"
+  $ git config user.email "gwarf@gwarf.org
+  
+  # Revert last commit
+  git revert HEAD
+  # see http://www.kernel.org/pub/software/scm/git/docs/git-rev-parse.html for
+  # revision specification
+  
+  # Remove some commit from the repository (after commit
+  # 32539081e2594de34027068ab9d6dda4a55dd2c3)
+  % git rebase -i '32539081e2594de34027068ab9d6dda4a55dd2c3^'
+  Successfully rebased and updated refs/heads/feature/gui-reorganisation.
+  % git st
+  # On branch feature/gui-reorganisation
+  # # Your branch is behind 'origin/feature/gui-reorganisation' by 4 commits,
+  # and can be fast-forwarded.
+  #
+  nothing to commit (working directory clean)
+  % git push -f origin gui-reorganisation:feature/gui-reorganisation
+  Total 0 (delta 0), reused 0 (delta 0)
+  To git@git.maatg.fr:Pandora/Pandora_Clients/Pandora_Clients_Initialisation_Proxy_Applet
+   + 19d28dc...3253908 feature/gui-reorganisation -> feature/gui-reorganisation (forced update)
+  
+  # Checkout/track a remote branch
+  # http://stackoverflow.com/questions/67699/how-do-i-clone-all-remote-branches-with-git
+  git branch -a
+  git checkout -t -b develop origin/develop
+  # Checkout remote branch with a local alias
+  git co -t -b loni-wokflow-sequencing origin/feature/loni-wokflow-sequencing
+  # Push to that branch
+  git push origin loni-wokflow-sequencing:feature/loni-wokflow-sequencing
+  
+  # Save local non commited/stagged changes to a new branch
+  git checkout -b new_branch_name
+  git ci -am 'Add debug statement for the LONI plugin'
+  
+  # Publish a local branch
+  git branch -a
+  git push origin proxy-init-renaming
+  git branch -a
+  
+  # Rename a remote branch
+  # loni-wokflow-sequencing to feature/loni-wokflow-sequencing
+  git push origin loni-wokflow-sequencing:feature/loni-wokflow-sequencing
+  # Delete old remote branch
+  git push origin :loni-wokflow-sequencing
+  
+  # Show remote repo
+  git remote show origin
+  
+  # Fix last commit log (that wasn't pushed)
+  git commit --amend
+  
+  # git diff of files that have been staged ie 'git add'ed
+  git diff --cached
+  
+  # Search logs
+  git log -p 'c0f5b52..HEAD'
+  git log -p '@{1 day ago}..HEAD'
+  
+  # View remote logs
+  git log origin -n 2
+  git log origin develop -n 2
+  
+  # Search commit logs
+  git log --grep=word
+  
+  # Search commit diff
+  git log -Sword
+  
+  # git bisect
+  http://www.miximum.fr/methodes-et-outils/79-debusquer-une-regression-avec-git-bisect
+  
+  # don't pull: fetch and merge
+  git fetch
+  git fetch origin
+  git diff develop origin/develop
+  git merge origin/develop
+  
+  # add remote
+  git remote add origin git@github.com:gwarf/gwarf.github.com.git
+  
+  # Checkout an old version of a file replacing the local checkouted
+  # version
+  git checkout 'HEAD^' src/main/java/org/pandora/clients/liferay/auth/filters/cas/PandoraCASFilter.java
