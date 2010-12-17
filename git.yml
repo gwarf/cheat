@@ -90,6 +90,7 @@ git: |-
   
   git commit --amend <file1> <file2> ...
     include changes made to <file1>, <file2>, etc..., and recommit with previous commit message
+    Fix last commit log (that wasn't pushed)
   
   Sharing
   -------
@@ -276,9 +277,6 @@ git: |-
   
   # Show remote repo
   git remote show origin
-  
-  # Fix last commit log (that wasn't pushed)
-  git commit --amend
   
   # git diff of files that have been staged ie 'git add'ed
   git diff --cached
