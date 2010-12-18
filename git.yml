@@ -52,6 +52,16 @@ git: |-
   git log
     show recent commits, most recent on top
   
+  git log -p 'c0f5b52..HEAD'
+  git log -p '@{1 day ago}..HEAD'
+    Search logs
+  
+  git log --grep=word
+    Search commit logs
+  
+  git log -Sword
+    search commit diff
+  
   git show <rev>
     show the changeset (diff) of a commit specified by <rev>, which can be any SHA1 commit ID, branch name, or tag
   
@@ -156,7 +166,7 @@ git: |-
   
   git remote show origin
     show remote origin
-
+  
   git push <repository> :heads/<branch>
     removes a branch from a remote repository. Example: git push origin :refs/old_branch_to_be_deleted
   
@@ -281,19 +291,9 @@ git: |-
   # git diff of files that have been staged ie 'git add'ed
   git diff --cached
   
-  # Search logs
-  git log -p 'c0f5b52..HEAD'
-  git log -p '@{1 day ago}..HEAD'
-  
   # View remote logs
   git log origin -n 2
   git log origin develop -n 2
-  
-  # Search commit logs
-  git log --grep=word
-  
-  # Search commit diff
-  git log -Sword
   
   # git bisect
   http://www.miximum.fr/methodes-et-outils/79-debusquer-une-regression-avec-git-bisect
